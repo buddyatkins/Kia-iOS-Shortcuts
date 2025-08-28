@@ -3,18 +3,6 @@ from flask import Flask, request, jsonify
 from hyundai_kia_connect_api import VehicleManager, ClimateRequestOptions
 from hyundai_kia_connect_api.exceptions import AuthenticationError
 
-import json
-from datetime import datetime, timezone
-from dataclasses import dataclass, asdict
-
-
-class CustomJSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, (datetime, timezone)):
-            return str(obj)  # Convert datetime/timezone to string representation
-        return json.JSONEncoder.default(self, obj)
-
-
 app = Flask(__name__)
 
 # Get credentials from environment variables
@@ -95,7 +83,12 @@ def list_vehicles():
 
         # Iterate over the dictionary values (Vehicle objects)
         vehicle_list = [
-            json.dumps(asdict(v), cls=CustomJSONEncoder, indent=4)
+            {
+                "name": v.name,
+                "id": v.id,
+                "model": v.model,
+                "year": v.year
+            }
             for v in vehicles.values()  # Use .values() to get the Vehicle objects
         ]
 
