@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify
 from hyundai_kia_connect_api import VehicleManager, ClimateRequestOptions
 from hyundai_kia_connect_api.exceptions import AuthenticationError
 
+from dataclasses import dataclass, asdict
+
 app = Flask(__name__)
 
 # Get credentials from environment variables
@@ -83,12 +85,7 @@ def list_vehicles():
 
         # Iterate over the dictionary values (Vehicle objects)
         vehicle_list = [
-            {
-                "name": v.name,
-                "id": v.id,
-                "model": v.model,
-                "year": v.year
-            }
+            asdict(v)
             for v in vehicles.values()  # Use .values() to get the Vehicle objects
         ]
 
