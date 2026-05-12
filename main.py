@@ -12,7 +12,7 @@ USERNAME = os.environ.get("KIA_USERNAME")
 PASSWORD = os.environ.get("KIA_PASSWORD")
 PIN = os.environ.get("KIA_PIN")
 SECRET_KEY = os.environ.get("SECRET_KEY")
-VEHICLE_ID = os.environ.get("VEHICLE_ID")  # Optional
+# VEHICLE_ID = os.environ.get("VEHICLE_ID")  # Optional
 
 missing = []
 if not USERNAME:
