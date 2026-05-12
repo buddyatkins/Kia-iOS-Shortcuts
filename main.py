@@ -11,7 +11,7 @@ PASSWORD = os.environ.get('KIA_PASSWORD')
 PIN = os.environ.get('KIA_PIN')
 
 if USERNAME is None or PASSWORD is None or PIN is None:
-    raise ValueError("Missing credentials! Check your environment variables.")
+    raise ValueError("Missing credentials! Check your environment variables. ")
 
 # Initialize Vehicle Manager
 vehicle_manager = VehicleManager(
